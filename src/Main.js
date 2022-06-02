@@ -80,7 +80,8 @@ const Main = () => {
 											</p>
 										</div>
 										<Functions className="btns_group">
-											<div className="btns">
+											{
+												!v.done && <div className="btns">
 												<Button
 													inline
 													outline
@@ -94,6 +95,7 @@ const Main = () => {
 													<ButtonStyle inline>수정</ButtonStyle>
 												</Link>
 											</div>
+											}
 											<Button
 												primary
 												inline
@@ -187,6 +189,9 @@ const CardItem = styled.li`
 		}
 		.example{
 			background-color: #E5E2D7;
+		}
+		.btns_group{
+			justify-content: flex-end;
 		}
 	}
 	&.ani_in.ani_done {
