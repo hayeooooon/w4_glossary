@@ -72,7 +72,7 @@ const Main = () => {
 													inline
 													outline
 													onClick={() => {
-														dispatch(deleteTermsFB(v.id));
+														dispatch(deleteTermsFB(v.id)); 
 													}}
 												>
 													삭제
@@ -238,7 +238,7 @@ const CardItem = styled.li`
 			line-height: 1.4;
 			&.example{
 				padding: 10px 14px;
-				background-color: rgba(243,240,231,.6);
+				background-color: rgba(201,215,255,.25);
 				font-size: 14px;
 				margin-top: 6px;
 			}
