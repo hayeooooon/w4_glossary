@@ -37,7 +37,8 @@ const Main = () => {
 				<ThemeProvider theme={theme}>
 					<CardsGroup>
 						{terms.map((v, i) => {
-							const _length = v.example.split(`<br/>`).length;
+							const _exam_lth = v.example.split(`<br/>`).length;
+							const _desc_lth = v.desc.split(`<br/>`).length;
 							return (
 								<CardItem
 									key={i}
@@ -48,15 +49,27 @@ const Main = () => {
 										<h3>{v.term}</h3>
 										<div>
 											<h4>DESCRIPTION</h4>
-											<p>{v.desc}</p>
+											<p>
+												{
+													_desc_lth > 1 ?
+													v.desc.split(`<br/>`).map((v,i) => {
+														if(_desc_lth === i-1){
+															return <span key={i}>{v}</span>;
+														}else{
+															return <span key={i}>{v}<br /></span>;
+														}
+													})
+													: v.desc
+												}
+											</p>
 										</div>
 										<div>
 											<h4>EXAMPLES</h4>
 											<p className="example">
 												{
-													_length > 1 ?
+													_exam_lth > 1 ?
 													v.example.split(`<br/>`).map((v,i) => {
-														if(_length === i-1){
+														if(_exam_lth === i-1){
 															return <span key={i}>{v}</span>;
 														}else{
 															return <span key={i}>{v}<br /></span>;
