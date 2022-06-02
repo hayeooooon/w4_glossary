@@ -212,6 +212,9 @@ const CardItem = styled.li`
 				padding-top: 15px;
 			}
 		}
+		@media ${({ theme }) => theme.device.mobile} {
+			font-size: 18px;
+		}
 	}
 	div {
 		h4 {
@@ -241,6 +244,9 @@ const CardItem = styled.li`
 				background-color: rgba(201,215,255,.25);
 				font-size: 14px;
 				margin-top: 6px;
+				@media ${({ theme }) => theme.device.mobile} {
+					margin-top: 2px;
+				}
 			}
 			@media ${({ theme }) => theme.device.tablet_s} {
 				font-size: 14px;
@@ -313,6 +319,9 @@ const Button = styled.button`
 	& + a {
 		margin-left: 6px;
 	}
+	@media ${({ theme }) => theme.device.mobile} {
+		min-width: ${(props) => (props.inline ? "0" : "120px")};
+	}
 `;
 const ButtonStyle = styled.span`
 	display: inline-block;
@@ -347,6 +356,8 @@ const RegisterButton = styled.button`
 	cursor: pointer;
 	border: none;
 	background: transparent;
+	border: 1px solid #FCF8EE;
+	box-sizing: border-box;
 	@media ${({ theme }) => theme.device.tablet_s} {
 		right: 20px;
 	}

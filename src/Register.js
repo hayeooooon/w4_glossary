@@ -1,8 +1,9 @@
-import React, { useRef, useState, useEffect } from "react";
-import styled from "styled-components";
+import React, { useRef, useState } from "react";
+import styled, { ThemeProvider } from "styled-components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createTermsFB } from "./redux/modules/termsList";
+import theme from "./theme";
 
 const Register = () => {
 	const dispatch = useDispatch();
@@ -60,65 +61,71 @@ const Register = () => {
 
 	return (
 		<div>
-			<CardView>
-				<h3>용어 등록하기</h3>
-				<form>
-					<InputArea>
-						<label>TERM</label>
-						<input
-							placeholder="등록할 단어를 입력하세요. (최대 30자)"
-							required
-							ref={input_term}
-							value={term}
-							onInput={() => {
-								setTerm(input_term.current.value);
-							}}
-							maxLength="30"
-						/>
-						{validation.term && <ErrorText>단어를 입력해주세요!</ErrorText>}
-					</InputArea>
-					<InputArea>
-						<label>DESCRIPTION</label>
-						<textarea
-							placeholder="단어 설명을 입력하세요. (최대 300자)"
-							ref={input_desc}
-							onInput={() => {
-								setDescription(input_desc.current.value);
-							}}
-							value={description}
-							required
-						></textarea>
-						<div className="info_box">
-							{validation.desc && <ErrorText>설명을 입력해주세요!</ErrorText>}
-							<Limit className="txt_limit">{description ? description.length : "0"} / 300</Limit>
-						</div>
-					</InputArea>
-					<InputArea>
-						<label>EXAMPLE</label>
-						<textarea
-							placeholder="예시를 입력하세요. (최대 200자)"
-							ref={input_example}
-							onInput={() => {
-								setExample(input_example.current.value);
-							}}
-							value={example}
-							required
-						></textarea>
-						<div className="info_box">
-							{validation.exam && <ErrorText>예시를 입력해주세요!</ErrorText>}
-							<Limit className="txt_limit">{example ? example.length : "0"} / 200</Limit>
-						</div>
-					</InputArea>
-					<ButtonArea>
-						<Button outline onClick={() => navigate("/")}>
-							취소
-						</Button>
-						<Button primary type="button" onClick={checkForm}>
-							용어 등록하기
-						</Button>
-					</ButtonArea>
-				</form>
-			</CardView>
+			<ThemeProvider theme={theme}>
+				<CardView>
+					<h3>용어 등록하기</h3>
+					<form>
+						<InputArea>
+							<label>TERM</label>
+							<input
+								placeholder="등록할 단어를 입력하세요. (최대 30자)"
+								required
+								ref={input_term}
+								value={term}
+								onInput={() => {
+									setTerm(input_term.current.value);
+								}}
+								maxLength="30"
+							/>
+							{validation.term && <ErrorText>단어를 입력해주세요!</ErrorText>}
+						</InputArea>
+						<InputArea>
+							<label>DESCRIPTION</label>
+							<textarea
+								placeholder="단어 설명을 입력하세요. (최대 300자)"
+								ref={input_desc}
+								onInput={() => {
+									setDescription(input_desc.current.value);
+								}}
+								value={description}
+								required
+							></textarea>
+							<div className="info_box">
+								{validation.desc && <ErrorText>설명을 입력해주세요!</ErrorText>}
+								<Limit className="txt_limit">
+									{description ? description.length : "0"} / 300
+								</Limit>
+							</div>
+						</InputArea>
+						<InputArea>
+							<label>EXAMPLE</label>
+							<textarea
+								placeholder="예시를 입력하세요. (최대 200자)"
+								ref={input_example}
+								onInput={() => {
+									setExample(input_example.current.value);
+								}}
+								value={example}
+								required
+							></textarea>
+							<div className="info_box">
+								{validation.exam && <ErrorText>예시를 입력해주세요!</ErrorText>}
+								<Limit className="txt_limit">
+									{example ? example.length : "0"} / 200
+								</Limit>
+							</div>
+						</InputArea>
+						<ButtonArea>
+							<Button outline onClick={() => navigate("/")}>
+								취소
+							</Button>
+							<Button primary type="button" onClick={checkForm}>
+								용어 등록하기
+							</Button>
+						</ButtonArea>
+					</form>
+				</CardView>
+			</ThemeProvider>
 		</div>
 	);
 };
@@ -131,6 +138,9 @@ const CardView = styled.div`
 		font-size: 34px;
 		margin-bottom: 40px;
 		text-align: center;
+		@media ${({ theme }) => theme.device.mobile} {
+			font-size: 26px;
+		}
 	}
 `;
 const InputArea = styled.div`
@@ -144,6 +154,10 @@ const InputArea = styled.div`
 		font-weight: 700;
 		letter-spacing: 0.1em;
 		margin-bottom: 8px;
+		@media ${({ theme }) => theme.device.mobile} {
+			font-size: 11px;
+			margin-bottom: 5px;
+		}
 	}
 	.info_box {
 		&:after {
@@ -153,6 +167,9 @@ const InputArea = styled.div`
 		}
 		p {
 			float: left;
+			@media ${({ theme }) => theme.device.mobile} {
+				font-size: 11px;
+			}
 		}
 		p.txt_limit {
 			float: right;
@@ -192,12 +209,21 @@ const Button = styled.button`
 	& + a {
 		margin-left: 12px;
 	}
+	@media ${({ theme }) => theme.device.mobile} {
+		min-width: ${(props) => (props.inline ? "0" : "120px")};
+		line-height: 34px;
+		height: 36px;
+		font-size: 14px;
+	}
 `;
 const ErrorText = styled.p`
 	font-size: 13px;
 	color: #ee3333;
 	line-height: 1.2;
 	margin-top: 5px;
+	@media ${({ theme }) => theme.device.mobile} {
+		font-size: 11px;
+	}
 `;
 
 export default Register;

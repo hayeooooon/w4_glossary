@@ -50,8 +50,15 @@ const Header = styled.header`
 	h1 {
 		font-size: 18px;
 		line-height: 55px;
-		@media ${({ theme }) => theme.device.tablet_s} {
+		@media ${({ theme }) => theme.device.mobile} {
 			font-size: 14px;
+		}
+		@media ${({ theme }) => theme.device.mobile_s} {
+			font-size: 12px;
+			span:nth-child(1),
+			span:nth-child(3){
+				font-size: 10px;
+			}
 		}
 	}
 `;
