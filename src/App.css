@@ -33,6 +33,7 @@ textarea{
   box-sizing: border-box;
   background-color: #F3F0E7;
   font-family: 'Inter', 'Noto Sans KR', sans-serif;
+  border-radius: 0!important;
 }
 input{
   line-height: 44px;

@@ -41,7 +41,7 @@ const Header = styled.header`
 	left: 0;
 	right: 0;
 	top: 0;
-	height: 55px;
+	height: 46px;
 	box-sizing: border-box;
 	background: #1b3b93;
 	color: #fcf8ee;
@@ -49,7 +49,7 @@ const Header = styled.header`
 	z-index: 2;
 	h1 {
 		font-size: 18px;
-		line-height: 55px;
+		line-height: 46px;
 		@media ${({ theme }) => theme.device.mobile} {
 			font-size: 14px;
 		}
