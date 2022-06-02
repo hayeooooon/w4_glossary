@@ -6,20 +6,19 @@ import styled, { ThemeProvider } from "styled-components";
 import Main from "./Main";
 import Register from "./Register";
 import Edit from "./Edit";
+import Modal from "./Modal";
 import theme from "./theme";
 
 function App() {
-	const left = `<Glossary>`;
-	const right = "</Glossary>";
-	const title = `Web Development Terms`;
+	const title = [`<Glossary>`,`Web Development Terms`,`</Glossary>`];
 	return (
 		<div className="App">
 			<ThemeProvider theme={theme}>
 				<Header>
 					<h1>
-						<span style={{ fontWeight: "300" }}>{left}</span>
-						<span style={{ fontWeight: "500" }}> {title} </span>
-						<span style={{ fontWeight: "300" }}>{right}</span>
+						<span style={{ fontWeight: "300" }}>{title[0]}</span>
+						<span style={{ fontWeight: "500" }}> {title[1]} </span>
+						<span style={{ fontWeight: "300" }}>{title[2]}</span>
 					</h1>
 				</Header>
 				<Container>
@@ -31,6 +30,7 @@ function App() {
 						</Routes>
 					</Inner>
 				</Container>
+				<Modal></Modal>
 			</ThemeProvider>
 		</div>
 	);
@@ -79,5 +79,6 @@ const Inner = styled.div`
 		padding: 60px 20px;
 	}
 `;
+
 
 export default App;

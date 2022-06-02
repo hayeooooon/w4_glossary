@@ -5,9 +5,9 @@ import { useSelector, useDispatch } from "react-redux";
 
 import {
 	loadTermsFB,
-	deleteTermsFB,
 	updateTermsFB,
 } from "./redux/modules/termsList";
+import { toggleModal } from "./redux/modules/modal";
 import theme from "./theme";
 
 const Main = () => {
@@ -15,6 +15,7 @@ const Main = () => {
 	const dispatch = useDispatch();
 	const terms = useSelector((state) => state.termsList.list);
 	const [ani, setAni] = useState("");
+	const [modal] = useState(false);
 	const startAnimation = () => {
 		setAni("ani_in");
 		setTimeout(() => setAni("ani_in ani_done"), 300);
@@ -30,7 +31,7 @@ const Main = () => {
 		};
 	}, []);
 
-	console.log(terms.length)
+
 	if (terms.length > 0) {
 		return (
 			<div>
@@ -85,9 +86,7 @@ const Main = () => {
 												<Button
 													inline
 													outline
-													onClick={() => {
-														dispatch(deleteTermsFB(v.id)); 
-													}}
+													onClick={()=>dispatch(toggleModal({status: !modal, item: v.id}))}
 												>
 													삭제
 												</Button>
