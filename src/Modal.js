@@ -43,16 +43,24 @@ const ModalWrap = styled.div`
 `;
 const ModalBox = styled.div`
 	position: relative;
-	width: 360px;
-	max-width: 90%;
+	max-width: 420px;
+	width: 90%;
 	padding: 30px;
 	background-color: #fff;
 	margin: 60px auto;
+	box-sizing: border-box;
+	text-align: center;
   h4{
     font-size: 16px;
-    text-align: center;
     padding: 10px 0 40px;
+		@media ${({ theme }) => theme.device.mobile} {
+			font-size: 14px;
+			padding-bottom: 30px;
+		}
   }
+	@media ${({ theme }) => theme.device.mobile} {
+		padding: 30px 20px;
+	}
 `;
 const Button = styled.button`
 	display: inline-block;
@@ -77,12 +85,18 @@ const Button = styled.button`
 	& + button,
 	& + a {
 		margin-left: 12px;
+		@media ${({ theme }) => theme.device.mobile} {
+			margin-left: 6px;
+		}
 	}
 	@media ${({ theme }) => theme.device.mobile} {
 		min-width: ${(props) => (props.inline ? "0" : "120px")};
 		line-height: 34px;
 		height: 36px;
 		font-size: 14px;
+	}
+	@media ${({ theme }) => theme.device.mobile_s} {
+		min-width: 100px;
 	}
 `;
 export default Modal;

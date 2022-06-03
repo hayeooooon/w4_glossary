@@ -265,6 +265,10 @@ const CardItem = styled.li`
 				background-color: rgba(201,215,255,.25);
 				font-size: 14px;
 				margin-top: 6px;
+				@media ${({ theme }) => theme.device.tablet_s} {
+					font-size: 12px;
+					padding: 8px 12px;
+				}
 				@media ${({ theme }) => theme.device.mobile} {
 					margin-top: 2px;
 				}
