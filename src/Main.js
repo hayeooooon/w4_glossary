@@ -17,17 +17,17 @@ const Main = () => {
 	const [ani, setAni] = useState("");
 	const [modal] = useState(false);
 	const startAnimation = () => {
-		setAni("ani_in");
-		setTimeout(() => setAni("ani_in ani_done"), 300);
+		setAni("ani_in"); // fade in 애니메이션 시작되는 클래스
+		setTimeout(() => setAni("ani_in ani_done"), 300); // animation-delay: 0으로 만들기 위해 'ani_done'클래스 추가
 	};
 
 	useEffect(() => {
 		dispatch(loadTermsFB());
-		setTimeout(() => {
+		const timeout = setTimeout(() => { // 데이터 불러오는 시간을 고려해서 setTimeout으로 애니메이션 시작 클래스 추가
 			startAnimation();
 		}, 300);
 		return () => {
-			clearTimeout(startAnimation());
+			clearTimeout(timeout); // 컴포넌트 unmount시 setTimeout 삭제
 		};
 	}, []);
 
@@ -51,7 +51,9 @@ const Main = () => {
 										<div>
 											<h4>DESCRIPTION</h4>
 											<p>
-												{
+												{ // 내려쓰기 기능을 추가하기 위해 텍스트에 <br/>태그가 있을 경우 <br/>기준으로 split하고 
+													// map으로 요소들을 돌려서 텍스트 뒤에 <br/>태그 추가 
+													// 마지막 요소 텍스트 뒤에는 <br/>태그 적용되지 않도록 if문으로 분기처리
 													_desc_lth > 1 ?
 													v.desc.split(`<br/>`).map((v,i) => {
 														if(_desc_lth === i-1){
@@ -67,7 +69,9 @@ const Main = () => {
 										<div>
 											<h4>EXAMPLES</h4>
 											<p className="example">
-												{
+												{ // 내려쓰기 기능을 추가하기 위해 텍스트에 <br/>태그가 있을 경우 <br/>기준으로 split하고 
+													// map으로 요소들을 돌려서 텍스트 뒤에 <br/>태그 추가 
+													// 마지막 요소 텍스트 뒤에는 <br/>태그 적용되지 않도록 if문으로 분기처리
 													_exam_lth > 1 ?
 													v.example.split(`<br/>`).map((v,i) => {
 														if(_exam_lth === i-1){
@@ -81,7 +85,7 @@ const Main = () => {
 											</p>
 										</div>
 										<Functions className="btns_group">
-											{
+											{ // 공부 완료된 카드에는 삭제,수정 버튼 노출되지 않도록 처리
 												!v.done && <div className="btns">
 												<Button
 													inline

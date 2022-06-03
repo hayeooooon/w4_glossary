@@ -65,15 +65,14 @@ const Edit = () => {
 					done: this_term.done,
 				})
 			);
-			navigate("/");
 		}
 	};
 
 	useEffect(() => {
-		if (!mounted.current) {
-			dispatch(loadTermsFB());
+		if (!mounted.current) { // data 배열 비어있을 때
+			dispatch(loadTermsFB()); 
 			mounted.current = true;
-		} else {
+		} else { // dependency 값(data 배열) 업데이트 됐을 때
 			setTerm(this_term.term);
 			setDescription(this_term.desc);
 			setExample(this_term.example);
